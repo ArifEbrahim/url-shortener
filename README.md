@@ -1,6 +1,6 @@
 # URL-shortener
 
-An API that takes a full URL, shortens it and make it available at a different route. his is a practice project to learn how to build an API in Node/Express in a Test Driven Way using Jest and Supertest.
+An API that takes a full URL, shortens it and make it available at a different route. This is a practice project to learn how to build an API in Node/Express in a Test Driven Way using Jest and Supertest.
 
 ### Requirements
 
