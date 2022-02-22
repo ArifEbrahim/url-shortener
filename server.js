@@ -17,7 +17,6 @@ app.post("/api/shorturl", (req, res) => {
     const newIndex = Object.keys(urlList).length + 1;
     urlList[userUrl] = newIndex;
   }
-  console.log(process.env)
   res.json({
     original_url: userUrl,
     short_url: urlList[userUrl],

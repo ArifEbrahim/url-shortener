@@ -17,5 +17,6 @@ describe("GET /api/shorturl/:urlNumber", () => {
   it("redirects to the original page when the short url is visited", async () => {
     const response = await request(app).get("/api/shorturl/1");
     expect(response.statusCode).toEqual(302);
+    expect(response.text).toEqual('Found. Redirecting to http://www.apple.com/uk')
   });
 });
