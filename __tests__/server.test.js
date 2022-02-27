@@ -11,6 +11,14 @@ describe("POST /api/shorturl", () => {
     expect(response.body).toHaveProperty("short_url");
     expect(response.body.short_url).toEqual(1);
   });
+
+  it("returns an error object when provided an invlaid url", async() => {
+    const response = await request(app)
+      .post("/api/shorturl")
+      .send({ url_input: "ftp:/john-doe.org" });
+    expect(response.body).toHaveProperty("error");
+    expect(response.body.error).toEqual("invalid url");
+  });
 });
 
 describe("GET /api/shorturl/:urlNumber", () => {

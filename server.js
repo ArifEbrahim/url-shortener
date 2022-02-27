@@ -12,14 +12,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/shorturl", (req, res) => {
-  const userUrl = process.env.NODE_ENV === 'test' ? req.body.url_input : req.body.url;
-  if (!(userUrl in urlList)) {
+  const userUrl = new URL(process.env.NODE_ENV === 'test' ? req.body.url_input : req.body.url);
+  if (userUrl.protocol === 'ftp:') {
+    res.json({ error: 'invalid url'})
+  } else if (!(userUrl.href in urlList)) {
     const newIndex = Object.keys(urlList).length + 1;
-    urlList[userUrl] = newIndex;
+    urlList[userUrl.href] = newIndex;
   }
   res.json({
-    original_url: userUrl,
-    short_url: urlList[userUrl],
+    original_url: userUrl.href,
+    short_url: urlList[userUrl.href],
   });
 });
 
